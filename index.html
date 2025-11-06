@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Bate-papo Node.js e Socket.IO</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <ul id="mensagens"></ul>
+    <form>
+      <input id="nome" placeholder="Seu nome de usuário" autocomplete="off" /><br>
+      <input id="mensagem" placeholder="Sua mensagem" autocomplete="off" /><button>Enviar</button>
+    </form>
+    <!-- Importa o script do Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+    
+      const nomeInput = document.getElementById('nome');
+      const mensagemInput = document.getElementById('mensagem');
+      const mensagens = document.getElementById('mensagens');
+      const form = document.querySelector('form');
+    
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const nome = nomeInput.value.trim();
+        const mensagem = mensagemInput.value.trim();
+    
+        if (!nome || !mensagem) return;
+    
+        // envia para o servidor
+        socket.emit('chat message', { nome, mensagem });
+    
+        mensagemInput.value = '';
+        nomeInput.disabled = true;
+      });
+    
+      // recebe mensagem e exibe (inclusive a própria)
+      socket.on('chat message', (dados) => {
+        adicionarMensagem(`${dados.nome}: ${dados.mensagem}`);
+      });
+    
+      function adicionarMensagem(texto) {
+        const li = document.createElement('li');
+        li.textContent = texto;
+        mensagens.appendChild(li);
+        mensagens.scrollTop = mensagens.scrollHeight;
+      }
+    </script>
+    
+
+  </body>
+</html>

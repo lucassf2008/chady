@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Poppins", "Segoe UI", sans-serif;
+}
+
+:root {
+  --primary-color: #007bff;
+  --primary-hover: #0056b3;
+  --bg-start: #e9f0f9;
+  --bg-end: #dce7f5;
+  --card-bg: #ffffff;
+  --text-color: #1e3a5f;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--text-color);
+  padding: 30px;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+#mensagens {
+  list-style: none;
+  width: 100%;
+  max-width: 650px;
+  height: 65vh;
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 25px;
+  overflow-y: auto;
+  box-shadow: var(--shadow-light);
+}
+
+#mensagens li {
+  background: #f0f7ff;
+  color: #333;
+  padding: 15px 20px;
+  border-radius: 20px 20px 20px 5px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  max-width: 90%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#mensagens li:nth-child(even) {
+  background: #e6e6e6;
+  margin-left: auto;
+  border-radius: 20px 20px 5px 20px;
+}
+
+form {
+  margin-top: 25px;
+  width: 100%;
+  max-width: 650px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 10px;
+  background: var(--card-bg);
+  padding: 15px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-light);
+}
+
+.input-group {
+  grid-column: 2 / 3;
+  display: flex;
+  gap: 10px;
+}
+
+input:not(#message-input) {
+  grid-column: 1 / 2;
+}
+
+input,
+textarea {
+  padding: 15px;
+  border: 1px solid #cce0ff;
+  border-radius: 10px;
+  background: #f7faff;
+  color: var(--text-color);
+  font-size: 17px;
+  width: 100%;
+}
+
+button {
+  background: var(--primary-color);
+  color: var(--card-bg);
+  border: none;
+  border-radius: 10px;
+  padding: 15px 25px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 17px;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+@media (max-width: 700px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  .input-group {
+    grid-column: 1 / 2;
+    flex-direction: column;
+  }
+
+  #name-input {
+    order: -1;
+  }
+}
